@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:clickable="false"
+    android:onClick="clicked_no">
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/blank_layout1"
+        android:layout_weight="0.3"
+        android:background="#ff8cffee">
+
+        <!--Blank layout for buffer -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="timer will go here"
+            android:id="@+id/blank1_view"
+            />
+    </LinearLayout>
+
+    <!--Layout for number text -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/number_layout"
+        android:layout_weight="0.3"
+        >
+
+        <!--Text view for number text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="6K"
+            android:id="@+id/number_view"
+            android:background="#fffcff9b" />
+
+    </LinearLayout>
+
+    <!--Layout for vowel text -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vowel_layout"
+        android:layout_weight="0.3"
+        >
+
+        <!--Text view for vowel text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="A6"
+            android:id="@+id/vowel_view"
+            android:background="#ffffffaa" />
+
+    </LinearLayout>
+
+
+    <!--Blank layout for second buffer -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/blank_layout2"
+        android:layout_weight="0.15">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="blank"
+            android:id="@+id/blank2_view"
+            android:background="#ff8cffee"
+            android:autoText="true" />
+
+        </LinearLayout>
+
+
+    <!--Layout for our buttons -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:layout_gravity="bottom"
+        android:id="@+id/button_layout"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="NO"
+            android:id="@+id/no_button"
+            android:layout_weight="0.5" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="YES"
+            android:layout_alignParentRight="true"
+            android:id="@+id/yes_button"
+            android:layout_weight="0.5"
+             />
+
+    </LinearLayout>
+
+</LinearLayout>
