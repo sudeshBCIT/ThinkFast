@@ -117,7 +117,7 @@ public class MyGame extends Activity {
             public void onFinish() {
                 //timer_text.setText("done!");
                 Toast.makeText(getApplicationContext(),"Your score is = " + score,Toast.LENGTH_LONG).show();
-                //startActivity(new Intent(MyGame.this, Continue1.class));
+                startActivity(new Intent(MyGame.this, Continue1.class));
             }
         }.start();
     }
