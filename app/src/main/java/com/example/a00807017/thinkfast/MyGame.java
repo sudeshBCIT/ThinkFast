@@ -1,13 +1,11 @@
 package com.example.a00807017.thinkfast;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,150 +15,152 @@ import java.util.concurrent.TimeUnit;
 
 public class MyGame extends Activity {
 
-    Button no_b;
-
-    TextView number_text, vowel_text, timer_text;
-
+    public TextView number_text, vowel_text, timer_text;
+    private int score, seconds, minutes;
     private static final String FORMAT = "%02d:%02d";
-
-    int score = 0, seconds, minutes;
+    public boolean result;
+    public int correct = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
 
-        no_b = (Button) findViewById(R.id.no_button);
         number_text = (TextView) findViewById(R.id.number_view);
-        vowel_text  = (TextView) findViewById(R.id.vowel_view);
-        timer_text  = (TextView) findViewById(R.id.blank1_view);
+        vowel_text = (TextView) findViewById(R.id.vowel_view);
 
-        //set our button listener for the NO button
-        no_b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Random random_number = new Random();
-                Random random_for_edittext = new Random();
-                //numbers generated only from 0-9
-                int random = random_number.nextInt(10);
-                int randomforedittext = random_for_edittext.nextInt();
-                //assign a letter from A-Z to a char
-                char letter = randomLetter();
+        result = showRandomText();
 
-                if(randomforedittext <= 0.5){
-                   number_text.setText(String.valueOf(random)+ letter);
-                   vowel_text.setText("");
-               }else
 
-                {
-                   vowel_text.setText(String.valueOf(random) + letter);
-                   number_text.setText("");
-                }
+        timer_text = (TextView)
 
-                if(number_text.getText().toString().equals("")){
-                   boolean isVowel =  checkVowel(vowel_text.getText().toString());
-                    if(isVowel == false)
-                    {
-                       score ++;
-                    }
-                }else
-                {
-                    boolean isEven =  checkEvenNumber(number_text.getText().toString());
-                    if(isEven == false)
-                    {
-                        score ++;
-                    }
-                }
-
-               /*  on 16/10/2014 commented
-                //sudesh 08/10/2014
-                switch(random)
-                {
-                    case 1:
-                        number_text.setText(String.valueOf(random)+ letter);
-                        vowel_text.setText("");
-                        break;
-                    case 2:
-                        vowel_text.setText(String.valueOf(random)+ letter);
-                        number_text.setText("");
-                        break;
-                    case 3:
-                        vowel_text.setText(String.valueOf(random)+ letter);
-                        number_text.setText("");
-                        break;
-                    case 4:
-                        number_text.setText(String.valueOf(random)+ letter);
-                        vowel_text.setText("");
-                        break;
-                }
-              */
-                //set our first text view to the random number and random letter
-                //number_text.setText(String.valueOf(random)+ letter);
-
-                //set our second text view to the random number and random letter
-               // vowel_text.setText(String.valueOf(random)+ letter);
-            }
-        });
+                findViewById(R.id.timer_view);
 
         //timer
         //Referenced this site: http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
-        new CountDownTimer(45000, 1000) { // adjust the milli seconds here
+        new
 
-            public void onTick(long millisUntilFinished) {
+                CountDownTimer(45000, 1000) { // adjust the milli seconds here
 
-                timer_text.setText(""+String.format(FORMAT,
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-            }
+                    public void onTick(long millisUntilFinished) {
 
-            public void onFinish() {
-                //timer_text.setText("done!");
-                Toast.makeText(getApplicationContext(),"Your score is = " + score,Toast.LENGTH_LONG).show();
-                //startActivity(new Intent(MyGame.this, Continue1.class));
-            }
-        }.start();
+                        timer_text.setText("" + String.format(FORMAT,
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                    }
+
+                    public void onFinish() {
+                        timer_text.setText("done!");
+                    }
+                }.start();
     }
 
-    //method to generate our random letter
-    public char randomLetter(){
+    //method to generate random number and letter and place in a randomly selected view
+    public boolean showRandomText() {
+        int number, viewNumber;
+        char letter;
+        boolean result;
+        Random random_number = new Random();
+
+        //assign a random number from 1-9 to an int that is displayed
+        number = random_number.nextInt(9) + 1;
+
+        //assign a random letter from A-Z (except "Y") to a char that is displayed
+        letter = randomLetter();
+
+        //assign to a view based on a random number
+        viewNumber = random_number.nextInt(2);
+
+
+        if (viewNumber == 0) { //set text to top textview and check if number is even
+            number_text.setText(String.valueOf(number) + letter);
+            vowel_text.setText("");
+            result = checkEvenNumber(number);
+        } else { //set text to bottom textview and check if letter is a vowel
+            number_text.setText("");
+            vowel_text.setText(String.valueOf(number) + letter);
+            result = checkVowel(letter);
+        }
+        return result;
+    }
+
+    //method to generate our random letter (excluding "Y")
+    private char randomLetter() {
         Random random_char = new Random();
-        int random = random_char.nextInt(27);
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int random = random_char.nextInt(25);
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
         char random_letter = alphabet.charAt(random);
         return random_letter;
     }
 
-    //  sudesh yadav 06/10/2014
-    //method to check if the number is even
-    //always checks the number_text view
-    //for the NO and YES button
-    public boolean checkEvenNumber(String str) {
-       //check if the value of number_text field is an even number
-       //remember the even number can be in the first or second position
-       String num = str.replaceAll("[^0-9]", "");
-        int num1 = Integer.parseInt(num);
-        if ((num1 /2) == 0 ) {
+    //method checks if random number is even
+    private boolean checkEvenNumber(int num) {
+        if ((num % 2) == 0) {
             return true;
         }
         else {
             return false;
-             }
         }
-    // sudesh 06/10/2014
+    }
+
+    //method checks if random letter is a vowel
+    public boolean checkVowel(char let) {
+        String vowels = "AEIOU";
+        if (vowels.indexOf(let) != -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //method to check if button clicked is correct
+    public void checkAnswer(View view) {
+        boolean answer = true;
+        String right;
+
+        switch (view.getId()) {
+            case R.id.yes_button:       //"yes" button was pressed
+                answer = true;
+                break;
+            case R.id.no_button:        //"no" button was pressed
+                answer = false;
+                break;
+            default:
+                break;
+        }
+        if (answer == result) {
+            correct = correct + 1;
+            right = "right";
+        } else {
+            right = "wrong";
+        }
+        Toast.makeText(getApplicationContext(), right, Toast.LENGTH_SHORT).show();
+        result = showRandomText();
+    }
 
 
-    // sudesh 06/10/2014
-    //method to check if the letter is a vowel
-    public boolean checkVowel(String str) {
-        String vow = str.replaceAll("[0-9]","");
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.my, menu);
+        return true;
+    }
 
-        return "AEIOUaeiou".indexOf(vow) != -1;
-   }
-   // sudesh 06/10/2014
-
-
-
-
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
+
+
+
+
+

@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="timer will go here"
-            android:id="@+id/blank1_view"
+            android:id="@+id/timer_view"
             />
     </LinearLayout>
 
@@ -40,9 +40,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="6K"
             android:id="@+id/number_view"
-            android:background="#fffcff9b" />
+            android:background="#fffcff9b"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
@@ -60,9 +60,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="A6"
             android:id="@+id/vowel_view"
-            android:background="#ffffffaa" />
+            android:background="#ffffffaa"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
@@ -84,7 +84,7 @@
             android:background="#ff8cffee"
             android:autoText="true" />
 
-        </LinearLayout>
+    </LinearLayout>
 
 
     <!--Layout for our buttons -->
@@ -101,6 +101,7 @@
             android:layout_height="match_parent"
             android:text="NO"
             android:id="@+id/no_button"
+            android:onClick="checkAnswer"
             android:layout_weight="0.5" />
 
         <Button
@@ -109,8 +110,8 @@
             android:text="YES"
             android:layout_alignParentRight="true"
             android:id="@+id/yes_button"
-            android:layout_weight="0.5"
-             />
+            android:onClick="checkAnswer"
+            android:layout_weight="0.5" />
 
     </LinearLayout>
 
