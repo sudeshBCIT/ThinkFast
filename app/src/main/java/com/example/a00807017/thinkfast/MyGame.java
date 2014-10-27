@@ -38,22 +38,20 @@ public class MyGame extends Activity {
 
         //timer
         //Referenced this site: http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
-        new
+        new CountDownTimer(45000, 1000) { // adjust the milli seconds here
 
-                CountDownTimer(45000, 1000) { // adjust the milli seconds here
+            public void onTick(long millisUntilFinished) {
 
-                    public void onTick(long millisUntilFinished) {
+                timer_text.setText("" + String.format(FORMAT,
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+            }
 
-                        timer_text.setText("" + String.format(FORMAT,
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-                    }
-
-                    public void onFinish() {
-                        timer_text.setText("done!");
-                    }
-                }.start();
+            public void onFinish() {
+                timer_text.setText("done!");
+            }
+        }.start();
     }
 
     //method to generate random number and letter and place in a randomly selected view
@@ -98,8 +96,7 @@ public class MyGame extends Activity {
     private boolean checkEvenNumber(int num) {
         if ((num % 2) == 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
