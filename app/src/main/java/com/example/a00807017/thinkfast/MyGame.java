@@ -17,6 +17,7 @@ public class MyGame extends Activity {
 
     public TextView number_text, vowel_text, timer_text;
     private int score, seconds, minutes;
+    private PlayCountDownTimer countDownTimer;
     private static final String FORMAT = "%02d:%02d";
     public boolean result;
     public int correct = 0;
@@ -28,31 +29,36 @@ public class MyGame extends Activity {
 
         number_text = (TextView) findViewById(R.id.number_view);
         vowel_text = (TextView) findViewById(R.id.vowel_view);
+        timer_text = (TextView) findViewById(R.id.timer_view);
 
+        countDownTimer = new PlayCountDownTimer(45000, 1000);
+        countDownTimer.start();
         result = showRandomText();
-
-
-        timer_text = (TextView)
-
-                findViewById(R.id.timer_view);
-
-        //timer
-        //Referenced this site: http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
-        new CountDownTimer(45000, 1000) { // adjust the milli seconds here
-
-            public void onTick(long millisUntilFinished) {
-
-                timer_text.setText("" + String.format(FORMAT,
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-            }
-
-            public void onFinish() {
-                timer_text.setText("done!");
-            }
-        }.start();
     }
+
+    // CountDownTimer class
+    public class PlayCountDownTimer extends CountDownTimer {
+
+        public PlayCountDownTimer(long startTime, long interval) {
+            super(startTime, interval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+
+            timer_text.setText("" + String.format(FORMAT,
+                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                            TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+        }
+
+        @Override
+        public void onFinish() {
+            timer_text.setText("done!");
+        }
+
+    }
+
 
     //method to generate random number and letter and place in a randomly selected view
     public boolean showRandomText() {
