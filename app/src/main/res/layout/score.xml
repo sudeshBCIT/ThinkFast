@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         android:text="Want to Play Again!"
         android:onClick="backtoActivity"
-        android:layout_gravity="center"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="60dp"
         android:id="@+id/continue12"
         />
     </LinearLayout>
