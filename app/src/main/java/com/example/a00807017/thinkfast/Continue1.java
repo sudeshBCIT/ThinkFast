@@ -3,6 +3,7 @@ package com.example.a00807017.thinkfast;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,5 +23,13 @@ public class Continue1 extends Activity {
         tscore.setText(scr);
         DatabaseHandler db = new DatabaseHandler(this);
         db.addContact(new Score(scr, "userid"));
+    }
+    public void backtoActivity(View view)
+    {
+        //Calling the main activity again
+        //Date 19/11/2014
+        Intent intent = new Intent(Continue1.this,MyGame.class);
+        startActivity(intent);
+
     }
 }
