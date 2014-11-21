@@ -7,43 +7,54 @@ public class Score
     {
         int _id;
         String _score;
-        String _userid;
+        String _username;
+        String _password;
 
         public Score(){}
 
         // constructor
-        public Score( String score, String userid){
+        public Score( String score, String username){
         // this._id = id;
         this._score = score;
-        this._userid = userid;
+        this._username = username;
+        // this._password = password;
     }
-        //getting id
+    //getting id
     public int getID(){
         return this._id;
     }
-
     // setting id
     public void setID(int id){
         this._id = id;
     }
-    //getting first name
+    //getting the score
     public String getScore()
     {
         return this._score;
     }
-    //setting first name
+    //setting the score
     public void setScore(String score)
     {
         this._score =   score;
     }
-    //getting last name
-    public String getUserid()
+    //getting the username
+    public String getUsername()
     {
-        return this._userid;
+        return this._username;
     }
-    //setting last name
-    public void setUserid(String userid)
+    //setting the username
+    public void setUsername(String username)
     {
-        this._userid = userid;
+        this._username = username;
     }
+    //getting the password
+    public String getPassword()
+        {
+            return this._password;
+        }
+    //setting the password
+    public void setPassword(String password)
+        {
+            this._password = password;
+        }
 }

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ThinkFast</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">ThinkFast!</string>
     <string name="action_settings">Settings</string>
+    <string name="pro">ThinkFast! pro?</string>
+    <string name="newu">New to the game?</string>
+    <string name="choose_name">Choose your User Name</string>
+    <string name="choose_pass">Choose your Password</string>
 
 </resources>

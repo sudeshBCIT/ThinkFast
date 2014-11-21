@@ -1,7 +1,6 @@
 package com.example.a00807017.thinkfast;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
@@ -17,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class MyGame extends Activity {
 
     public TextView number_text, vowel_text, timer_text;
-    private int score =0, seconds, minutes;
+    private int score, seconds, minutes;
     private static final String FORMAT = "%02d:%02d";
     public boolean result;
     public int correct = 0;
@@ -41,7 +40,7 @@ public class MyGame extends Activity {
         //Referenced this site: http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
         new
 
-                CountDownTimer(15000, 1000) { // adjust the milli seconds here
+                CountDownTimer(45000, 1000) { // adjust the milli seconds here
 
                     public void onTick(long millisUntilFinished) {
 
@@ -53,11 +52,6 @@ public class MyGame extends Activity {
 
                     public void onFinish() {
                         timer_text.setText("done!");
-                      //  Toast.makeText(getApplicationContext(),correct+"",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent (MyGame.this,Continue1.class);
-                        intent.putExtra("score",correct+"");
-                        //startActivity(new Intent(MyGame.this, Continue1.class));
-                        startActivity(intent);
                     }
                 }.start();
     }
@@ -146,8 +140,24 @@ public class MyGame extends Activity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.my, menu);
+        return true;
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
 

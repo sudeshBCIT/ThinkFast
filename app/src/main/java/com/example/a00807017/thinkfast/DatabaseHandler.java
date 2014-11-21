@@ -21,7 +21,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Contacts Table Columns names
     private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "userid";
+    private static final String KEY_NAME = "username";
+    private static final String KEY_PASS = "password";
     private static final String KEY_PH_NO = "score";
 
     public DatabaseHandler(Context context) {
@@ -32,7 +33,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_PH_NO + " TEXT" + ")";
+
+               + KEY_PASS + " TEXT" + KEY_PH_NO + " TEXT" + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
     // Upgrading database
@@ -49,7 +51,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, score.getUserid()); //  Userid
+        values.put(KEY_NAME, score.getUsername()); //  Username
+        values.put(KEY_PASS, score.getPassword()); //  Password
         values.put(KEY_PH_NO, score.getScore()); //  Score
 
         // Inserting Row
