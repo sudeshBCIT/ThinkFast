@@ -41,7 +41,7 @@ public class MyGame extends Activity {
         //Referenced this site: http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
         new
 
-                CountDownTimer(15000, 1000) { // adjust the milli seconds here
+                CountDownTimer(30000, 1000) { // adjust the milli seconds here
 
                     public void onTick(long millisUntilFinished) {
 
