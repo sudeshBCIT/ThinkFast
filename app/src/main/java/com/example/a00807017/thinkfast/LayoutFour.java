@@ -4,7 +4,7 @@ package com.example.a00807017.thinkfast;
  * Created by A00807017 on 11/6/2014.
  */
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
