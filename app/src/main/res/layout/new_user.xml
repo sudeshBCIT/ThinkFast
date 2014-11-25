@@ -25,13 +25,6 @@
         android:hint="User Name"
         android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Check if available"
-        android:id="@+id/btn_available"
-        android:layout_gravity="center_horizontal" />
-
     <Space
         android:layout_width="1dp"
         android:layout_height="30dp" />
