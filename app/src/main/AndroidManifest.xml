@@ -12,6 +12,7 @@
             android:label="@string/title_activity_login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -19,12 +20,12 @@
             android:name="com.example.a00807017.thinkfast.MyGame"
             android:label="@string/app_name" >
         </activity>
-
         <activity
             android:name="com.example.a00807017.thinkfast.Continue1"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.CONTINUE1" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -33,8 +34,12 @@
             android:label="@string/title_activity_new_user" >
         </activity>
         <activity
-            android:name=".ViewPagerStyle1Activity"
+            android:name="com.example.a00807017.thinkfast.ViewPagerStyle1Activity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.a00807017.thinkfast.Options"
+            android:label="@string/title_activity_options" >
         </activity>
     </application>
 

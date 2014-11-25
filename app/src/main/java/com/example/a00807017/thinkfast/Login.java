@@ -63,6 +63,8 @@ public class Login extends Activity {
                 if(password.equals(storedPassword))
                 {
                     Toast.makeText(Login.this, "Congrats: Login Successful", Toast.LENGTH_LONG).show();
+                    Intent optionsIntent = new Intent(getApplicationContext(), Options.class);
+                    startActivity(optionsIntent);
                                     }
                 else
                 {

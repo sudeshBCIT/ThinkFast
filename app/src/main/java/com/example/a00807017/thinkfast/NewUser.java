@@ -1,6 +1,7 @@
 package com.example.a00807017.thinkfast;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,6 +56,9 @@ public class NewUser extends Activity {
                     // Save the Data in Database
                     loginDataBaseAdapter.insertEntry(userName, password);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+
+                    Intent optionsIntent = new Intent(getApplicationContext(), Options.class);
+                    startActivity(optionsIntent);
 
                 }
             }
