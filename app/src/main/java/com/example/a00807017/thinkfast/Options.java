@@ -50,7 +50,8 @@ public class Options extends Activity {
                 break;
 
             case R.id.btn_instruct: /** Start the instructions */
-
+                Intent instructionsIntent = new Intent(this, ViewPagerStyle1Activity.class);
+                this.startActivity(instructionsIntent);
                 break;
 
             case R.id.btn_scores: /** Show the scores **/

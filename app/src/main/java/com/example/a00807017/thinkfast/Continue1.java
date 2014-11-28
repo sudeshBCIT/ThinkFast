@@ -30,6 +30,12 @@ public class Continue1 extends Activity {
         //Date 19/11/2014
         Intent intent = new Intent(Continue1.this,MyGame.class);
         startActivity(intent);
+    }
 
+    public void backToOptions(View view)
+    {
+        //take us back to Options menu
+        Intent options_intent = new Intent(Continue1.this,Options.class);
+        startActivity(options_intent);
     }
 }
