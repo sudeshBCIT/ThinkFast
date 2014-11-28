@@ -5,6 +5,8 @@
     android:background="#00ced1"
     android:orientation="vertical" >
 
+
+
     <TableLayout
         style="@style/layout_f_w"
         android:stretchColumns="*" >
@@ -77,16 +79,49 @@
 
             </LinearLayout>
 
+
+
         </TableRow>
 
     </TableLayout>
     <!-- Include Tab Indicator  -->
     <include layout="@layout/indicator" android:layout_width="fill_parent" android:layout_height="wrap_content"  />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v4.view.ViewPager
+            android:layout_width="fill_parent" android:layout_height="fill_parent"
+            android:id="@+id/viewPager" />
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="fill_parent" android:layout_height="fill_parent"
-        android:id="@+id/viewPager" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonBar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Play Game"
+                    android:id="@+id/play_button"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exit"
+                    android:id="@+id/cancel_button"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+</RelativeLayout>
+
+
 
 
 </LinearLayout>

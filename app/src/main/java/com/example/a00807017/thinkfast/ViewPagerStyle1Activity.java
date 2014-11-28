@@ -27,18 +27,30 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
         setUpView();
         setTab();
 
-//        //added this
-//        play_b = (Button) findViewById(R.id.play_button);
-//
-//        play_b.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(ViewPagerStyle1Activity.this, MyGame.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//
-//        });
+        //added this
+        play_b = (Button) findViewById(R.id.play_button);
+
+        play_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewPagerStyle1Activity.this, MyGame.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+
+        exit_b = (Button) findViewById(R.id.cancel_button);
+
+        exit_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_exit = new Intent(ViewPagerStyle1Activity.this, Options.class);
+                startActivity(intent_exit);
+                finish();
+            }
+
+        });
     }
 
 
