@@ -52,7 +52,7 @@ public class MyGame extends Activity {
                     }
 
                     public void onFinish() {
-                        timer_text.setText("done!");
+                        timer_text.setText("Time Out!");
                       //  Toast.makeText(getApplicationContext(),correct+"",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent (MyGame.this,Continue1.class);
                         intent.putExtra("score",correct+"");
