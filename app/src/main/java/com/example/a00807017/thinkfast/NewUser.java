@@ -60,10 +60,11 @@ public class NewUser extends Activity {
                     Intent optionsIntent = new Intent(getApplicationContext(), Options.class);
                     optionsIntent.putExtra("USERNAME", userName);
                     startActivity(optionsIntent);
-
                 }
             }
         });
+
+
     }
     @Override
     protected void onDestroy() {
