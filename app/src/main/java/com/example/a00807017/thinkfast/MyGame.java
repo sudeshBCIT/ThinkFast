@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,31 @@ public class MyGame extends Activity {
     public String userName;
     public boolean result;
     public int correct = 0;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_bar_game, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.menu_pause:
+                Intent pauseGame = new Intent(this, MyGame.class);
+                onPause();
+                return true;
+            case R.id.menu_exit:
+                Intent exitGame = new Intent(this, Options.class);
+                onStop();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +89,11 @@ public class MyGame extends Activity {
                         startActivity(intent);
 
                     }
+
+                    public void onPause() {
+                        onPause();
+                    }
+
                 }.start();
     }
 

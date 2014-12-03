@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,6 +21,14 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
     //added this
     Button play_b;
     Button exit_b;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_bar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     /** Called when the activity is first created. */
     @Override
