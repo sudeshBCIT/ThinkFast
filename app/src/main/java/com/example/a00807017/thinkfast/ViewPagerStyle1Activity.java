@@ -14,6 +14,7 @@ import android.widget.Button;
 public class ViewPagerStyle1Activity extends FragmentActivity {
     private ViewPager _mViewPager;
     private ViewPagerAdapter _adapter;
+    public String userName;
 
     //added this
     Button play_b;
@@ -27,6 +28,9 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
         setUpView();
         setTab();
 
+        Intent intent = getIntent();
+        userName = intent.getStringExtra("USERNAME");
+
         //added this
         play_b = (Button) findViewById(R.id.play_button);
 
@@ -34,6 +38,7 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewPagerStyle1Activity.this, MyGame.class);
+                intent.putExtra("USERNAME", userName);
                 startActivity(intent);
                 finish();
             }
@@ -46,6 +51,7 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 Intent intent_exit = new Intent(ViewPagerStyle1Activity.this, Options.class);
+                intent_exit.putExtra("USERNAME", userName);
                 startActivity(intent_exit);
                 finish();
             }

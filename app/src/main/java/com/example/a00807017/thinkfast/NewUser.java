@@ -13,8 +13,8 @@ public class NewUser extends Activity {
 
     EditText editTextUserName,editTextPassword,editTextConfirmPassword;
     Button btnCreateAccount;
+    DataBaseAdapter dataBaseAdapter;
 
-    LoginDataBaseAdapter loginDataBaseAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -22,8 +22,8 @@ public class NewUser extends Activity {
         setContentView(R.layout.new_user);
 
         // get Instance  of Database Adapter
-        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
-        loginDataBaseAdapter=loginDataBaseAdapter.open();
+        dataBaseAdapter = new DataBaseAdapter(this);
+        dataBaseAdapter = dataBaseAdapter.open();
 
         // Get References of Views
         editTextUserName=(EditText)findViewById(R.id.newuser_name);
@@ -42,7 +42,7 @@ public class NewUser extends Activity {
                 // check if any of the fields are vacant
                 if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
                 {
-                    Toast.makeText(getApplicationContext(), "Field Vacant", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Field is Empty", Toast.LENGTH_LONG).show();
                     return;
                 }
                 // check if both password matches
@@ -54,10 +54,11 @@ public class NewUser extends Activity {
                 else
                 {
                     // Save the Data in Database
-                    loginDataBaseAdapter.insertEntry(userName, password);
+                    dataBaseAdapter.insertEntry(userName, password);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
 
                     Intent optionsIntent = new Intent(getApplicationContext(), Options.class);
+                    optionsIntent.putExtra("USERNAME", userName);
                     startActivity(optionsIntent);
 
                 }
@@ -69,6 +70,6 @@ public class NewUser extends Activity {
 
         super.onDestroy();
 
-        loginDataBaseAdapter.close();
+        dataBaseAdapter.close();
     }
 }

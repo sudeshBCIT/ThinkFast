@@ -1,60 +1,52 @@
 package com.example.a00807017.thinkfast;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
 /**
- * Created by Sudesh on 30/10/2014.
+ * Created by Sudesh on 11/10/2014.
  */
-public class Score
-    {
-        int _id;
-        String _score;
-        String _username;
-        String _password;
+public class Score extends Activity {
 
-        public Score(){}
+    public String userName;
+    public int score;
+    private int[]scores;
 
-        // constructor
-        public Score( String score, String username){
-        // this._id = id;
-        this._score = score;
-        this._username = username;
-        // this._password = password;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.score);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        userName = bundle.getString("USERNAME");
+        score = bundle.getInt("score");
+        String scr = score+"";
+     //   Toast.makeText(this,scr,Toast.LENGTH_SHORT).show();
+       // score = Integer.parseInt(scr);
+        EditText tscore = (EditText) findViewById(R.id.editscore);
+        tscore.setText(scr);
+
+
     }
-    //getting id
-    public int getID(){
-        return this._id;
-    }
-    // setting id
-    public void setID(int id){
-        this._id = id;
-    }
-    //getting the score
-    public String getScore()
+    public void backtoActivity(View view)
     {
-        return this._score;
+        //Calling the main activity again
+        //Date 19/11/2014
+        Intent intent = new Intent(Score.this,MyGame.class);
+        intent.putExtra("USERNAME", userName);
+        startActivity(intent);
     }
-    //setting the score
-    public void setScore(String score)
+
+    public void backToOptions(View view)
     {
-        this._score =   score;
+        //take us back to Options menu
+        Intent options_intent = new Intent(Score.this,Options.class);
+        options_intent.putExtra("USERNAME", userName);
+        startActivity(options_intent);
     }
-    //getting the username
-    public String getUsername()
-    {
-        return this._username;
-    }
-    //setting the username
-    public void setUsername(String username)
-    {
-        this._username = username;
-    }
-    //getting the password
-    public String getPassword()
-        {
-            return this._password;
-        }
-    //setting the password
-    public void setPassword(String password)
-        {
-            this._password = password;
-        }
+
+
 }

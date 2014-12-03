@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class Login extends Activity {
 
     Button btnSignIn,btnNewUser;
-    LoginDataBaseAdapter loginDataBaseAdapter;
+    DataBaseAdapter dataBaseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,8 +21,8 @@ public class Login extends Activity {
         setContentView(R.layout.login);
 
         // create a instance of SQLite Database
-        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
-        loginDataBaseAdapter=loginDataBaseAdapter.open();
+        dataBaseAdapter =new DataBaseAdapter(this);
+        dataBaseAdapter = dataBaseAdapter.open();
 
         // Get The Reference Of Buttons
         btnSignIn=(Button)findViewById(R.id.btn_signin);
@@ -57,15 +57,16 @@ public class Login extends Activity {
                 String password=editTextPassword.getText().toString();
 
                 // fetch the Password form database for respective user name
-                String storedPassword=loginDataBaseAdapter.getSingleEntry(userName);
+                String storedPassword= dataBaseAdapter.getPassword(userName);
 
                 // check if the Stored password matches with  Password entered by user
                 if(password.equals(storedPassword))
                 {
                     Toast.makeText(Login.this, "Congrats: Login Successful", Toast.LENGTH_LONG).show();
                     Intent optionsIntent = new Intent(getApplicationContext(), Options.class);
+                    optionsIntent.putExtra("USERNAME", userName);
                     startActivity(optionsIntent);
-                                    }
+                }
                 else
                 {
                     Toast.makeText(Login.this, "User Name or Password does not match", Toast.LENGTH_LONG).show();
@@ -79,6 +80,6 @@ public class Login extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         // Close The Database
-        loginDataBaseAdapter.close();
+        dataBaseAdapter.close();
     }
 }

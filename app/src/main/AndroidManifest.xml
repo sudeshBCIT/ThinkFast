@@ -21,7 +21,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.a00807017.thinkfast.Continue1"
+            android:name="com.example.a00807017.thinkfast.Score"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.CONTINUE1" />
@@ -40,6 +40,10 @@
         <activity
             android:name="com.example.a00807017.thinkfast.Options"
             android:label="@string/title_activity_options" >
+        </activity>
+        <activity
+            android:name="com.example.a00807017.thinkfast.UserApplication"
+            android:label="@string/title_activity_user_application" >
         </activity>
     </application>
 
