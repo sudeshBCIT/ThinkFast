@@ -10,10 +10,15 @@ import android.view.View;
 
 public class Options extends Activity {
 
+    public String userName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.options);
+
+        Intent intent = getIntent();
+        userName = intent.getStringExtra("USERNAME");
 
     }
 
@@ -46,18 +51,21 @@ public class Options extends Activity {
 
             case R.id.btn_play: /** Start the game **/
                 Intent playIntent = new Intent(this, MyGame.class);
+                playIntent.putExtra("USERNAME", userName);
                 this.startActivity(playIntent);
                 break;
 
             case R.id.btn_instruct: /** Start the instructions */
                 Intent instructionsIntent = new Intent(this, ViewPagerStyle1Activity.class);
+                instructionsIntent.putExtra("USERNAME", userName);
                 this.startActivity(instructionsIntent);
                 break;
 
             case R.id.btn_scores: /** Show the scores **/
-
+                Intent scoresIntent = new Intent(this, Score.class);
+                scoresIntent.putExtra("USERNAME", userName);
+                this.startActivity(scoresIntent);
                 break;
-
         }
     }
 }

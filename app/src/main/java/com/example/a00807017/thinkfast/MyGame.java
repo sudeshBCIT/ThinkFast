@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +16,10 @@ import java.util.concurrent.TimeUnit;
 public class MyGame extends Activity {
 
     public TextView number_text, vowel_text, timer_text;
-    private int score =0, seconds, minutes;
+    private int score =0;
+    private int seconds, minutes;
     private static final String FORMAT = "%02d:%02d";
+    public String userName;
     public boolean result;
     public int correct = 0;
 
@@ -27,21 +28,20 @@ public class MyGame extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
 
+        Intent intent = getIntent();
+        userName = intent.getStringExtra("USERNAME");
+
+        // Get references to views
         number_text = (TextView) findViewById(R.id.number_view);
         vowel_text = (TextView) findViewById(R.id.vowel_view);
+        timer_text = (TextView) findViewById(R.id.timer_view);
 
+        // Generate random text
         result = showRandomText();
-
-
-        timer_text = (TextView)
-
-                findViewById(R.id.timer_view);
 
         //timer
         //Referenced this site: http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
-        new
-
-                CountDownTimer(15000, 1000) { // adjust the milli seconds here
+        new CountDownTimer(15000, 1000) { // adjust the milli seconds here
 
                     public void onTick(long millisUntilFinished) {
 
@@ -53,13 +53,13 @@ public class MyGame extends Activity {
 
                     public void onFinish() {
                         timer_text.setText("Time Out!");
-                      //  Toast.makeText(getApplicationContext(),correct+"",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent (MyGame.this,Continue1.class);
-                        intent.putExtra("score",correct+"");
-                        //startActivity(new Intent(MyGame.this, Continue1.class));
+                        Intent intent = new Intent (MyGame.this,Score.class);
+                        Bundle extras = new Bundle();
+                        extras.putInt("score", correct);
+                        extras.putString("USERNAME", userName);
+                        intent.putExtras(extras);
                         startActivity(intent);
 
-                        //ssss
                     }
                 }.start();
     }
@@ -143,13 +143,19 @@ public class MyGame extends Activity {
         } else {
             right = "wrong";
         }
-        Toast.makeText(getApplicationContext(), right, Toast.LENGTH_SHORT).show();
+        final Toast toast = Toast.makeText(getApplicationContext(), right, Toast.LENGTH_SHORT);
+        toast.show();
+        // set toast to show for only 1 second
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toast.cancel();
+            }
+        }, 1000);
+        // get new random text
         result = showRandomText();
     }
-
-
-
-
 }
 
 
