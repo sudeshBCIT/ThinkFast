@@ -21,19 +21,54 @@ public class Score extends Activity {
         setContentView(R.layout.score);
 
         // get Instance  of Database Adapter
-        dataBaseAdapter = new DataBaseAdapter(this);
-        dataBaseAdapter = dataBaseAdapter.open();
+        dataBaseAdapter = DataBaseAdapter.getOneInstance(this);
+        //dataBaseAdapter = dataBaseAdapter.open();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         userName = bundle.getString("USERNAME");
         score = bundle.getInt("score");
-     //   Toast.makeText(this,scr,Toast.LENGTH_SHORT).show();
-       // score = Integer.parseInt(scr);
+
+        // Display current score
         TextView tscore = (TextView) findViewById(R.id.editscore);
         tscore.setText(String.valueOf(score));
 
+        // Get scores array from database
+        scores = dataBaseAdapter.getScores(userName);
+
+        // Display the previous top three scores
+        TextView textScore1 = (TextView) findViewById(R.id.first_place);
+        int score1 = scores[0];
+        textScore1.setText(String.valueOf(score1));
+
+        TextView textScore2 = (TextView) findViewById(R.id.second_place);
+        int score2 = scores[1];
+        textScore2.setText(String.valueOf(score2));
+
+        TextView textScore3 = (TextView) findViewById(R.id.third_place);
+        int score3 = scores[2];
+        textScore3.setText(String.valueOf(score3));
+
+        // Save the current score in database if one of 3 highest scores
+
     }
+
+    public int getLowScoreIndex(int[] scores) {
+        int lowScore = 0;
+        int index = 0;
+
+        scores[0] = lowScore;
+        index = 0;
+        if (scores[1] < lowScore) {
+            lowScore = scores[1];
+            index = 1;
+        }
+        if (scores[2]< lowScore) {
+            index = 2;
+        }
+        return index;
+    }
+
     public void backtoActivity(View view)
     {
         //Calling the main activity again
@@ -50,6 +85,4 @@ public class Score extends Activity {
         options_intent.putExtra("USERNAME", userName);
         startActivity(options_intent);
     }
-
-
 }

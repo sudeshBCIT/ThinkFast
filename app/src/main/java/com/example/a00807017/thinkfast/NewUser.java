@@ -22,7 +22,7 @@ public class NewUser extends Activity {
         setContentView(R.layout.new_user);
 
         // get Instance  of Database Adapter
-        dataBaseAdapter = new DataBaseAdapter(this);
+        dataBaseAdapter = DataBaseAdapter.getOneInstance(this);
         dataBaseAdapter = dataBaseAdapter.open();
 
         // Get References of Views
@@ -68,9 +68,8 @@ public class NewUser extends Activity {
     }
     @Override
     protected void onDestroy() {
-
         super.onDestroy();
-
+        // Close The Database
         dataBaseAdapter.close();
     }
 }

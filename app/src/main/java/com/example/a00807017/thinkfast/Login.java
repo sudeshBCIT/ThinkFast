@@ -21,7 +21,7 @@ public class Login extends Activity {
         setContentView(R.layout.login);
 
         // create a instance of SQLite Database
-        dataBaseAdapter =new DataBaseAdapter(this);
+        dataBaseAdapter = DataBaseAdapter.getOneInstance(this);
         dataBaseAdapter = dataBaseAdapter.open();
 
         // Get The Reference Of Buttons
