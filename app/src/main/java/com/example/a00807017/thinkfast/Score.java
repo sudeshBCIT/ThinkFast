@@ -50,15 +50,16 @@ public class Score extends Activity {
         textScore3.setText(String.valueOf(score3));
 
         // Save the current score in database if one of 3 highest scores
+        int index = getLowScoreIndex(scores);
+        dataBaseAdapter.updateScore(userName, scores , score, index);
 
-    }
+        }
 
     public int getLowScoreIndex(int[] scores) {
         int lowScore = 0;
         int index = 0;
 
         scores[0] = lowScore;
-        index = 0;
         if (scores[1] < lowScore) {
             lowScore = scores[1];
             index = 1;
