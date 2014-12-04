@@ -17,7 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 
 public class MyGame extends Activity {
-
+    public CountDownTimer ourTimer;
+    public long time_remaining=0; //==
     public TextView number_text, vowel_text, timer_text;
     private int score =0;
     private int seconds, minutes;
@@ -25,6 +26,8 @@ public class MyGame extends Activity {
     public String userName;
     public boolean result;
     public int correct = 0;
+    public int pause = 0;
+    private boolean resumeHasRun = false;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,17 +37,34 @@ public class MyGame extends Activity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.menu_pause:
-                Intent pauseGame = new Intent(this, MyGame.class);
-                onPause();
+//                Intent pauseGame = new Intent(this, MyGame.class);
+//                onPause();
+                if (pause == 0) {
+                    this.ourTimer.cancel();
+                    super.onPause();
+                    pause = 1;
+                   // Toast.makeText(this,time_remaining+ "", Toast.LENGTH_SHORT).show();
+//                    time_remaining =
+                }
+
+                else {
+                    ourTimer.start();
+                    super.onResume();
+                     pause=0;
+                }
+
                 return true;
             case R.id.menu_exit:
                 Intent exitGame = new Intent(this, Options.class);
-                onStop();
+                startActivity(exitGame);
+               // onStop();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -67,9 +87,10 @@ public class MyGame extends Activity {
         // Generate random text
         result = showRandomText();
 
+
         //timer
         //Referenced this site: http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
-        new CountDownTimer(15000, 1000) { // adjust the milli seconds here
+       ourTimer = new CountDownTimer(15000, 1000) { // adjust the milli seconds here
 
                     public void onTick(long millisUntilFinished) {
 
@@ -77,6 +98,8 @@ public class MyGame extends Activity {
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                                 TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
                                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                        time_remaining = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished));
                     }
 
                     public void onFinish() {
