@@ -11,24 +11,30 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DataBaseAdapter {
-    static final String DATABASE_NAME = "thinkfast.db";
-    static final int DATABASE_VERSION = 1;
-    public static final int NAME_COLUMN = 1;
+    private static DataBaseAdapter oneInstance;
+    private static final String DATABASE_NAME = "thinkfast.db";
+    private static final int DATABASE_VERSION = 1;
+
 
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "THINKFAST" +
             "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text, PASSWORD text, " +
             "SCORE1 integer, SCORE2 integer, SCORE3 integer ); ";
     // Variable to hold the database instance
-    public SQLiteDatabase db;
-    // Context of the application using the database.
-    private final Context context;
-    // Database open/upgrade helper
+    public SQLiteDatabase db;      // Context of the application using the database.
+    private final Context context;    // Database open/upgrade helper
     private DataBaseHelper dbHelper;
 
-    public DataBaseAdapter(Context _context) {
+    private DataBaseAdapter(Context _context) {
         context = _context;
         dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static DataBaseAdapter getOneInstance(Context _context) {
+        if (oneInstance == null) {
+            oneInstance = new DataBaseAdapter(_context.getApplicationContext());
+        }
+        return oneInstance;
     }
 
     public DataBaseAdapter open() throws SQLException {
@@ -43,7 +49,6 @@ public class DataBaseAdapter {
     public SQLiteDatabase getDatabaseInstance() {
         return db;
     }
-
     public void insertEntry(String userName, String password) {
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
@@ -90,22 +95,6 @@ public class DataBaseAdapter {
         db.update("THINKFAST", updatedValues, where, new String[]{userName});
     }
 
-    public int getLowScoreIndex(int[] scores) {
-        int lowScore = 0;
-        int index = 0;
-
-        scores[0] = lowScore;
-        index = 0;
-        if (scores[1] < lowScore) {
-            lowScore = scores[1];
-            index = 1;
-        }
-        if (scores[2]< lowScore) {
-            index = 2;
-        }
-        return index;
-    }
-
    public int[] getScores(String userName) {
 
         int[] scores = new int[3];
@@ -121,15 +110,13 @@ public class DataBaseAdapter {
         return scores;
     }
 
-    public void updateScore(String userName, int[] scores, int score)
+    public void updateScore(String userName, int[] scores, int score, int index)
     {
-        int index;
 
         // Define the updated row content.
         ContentValues updatedValues = new ContentValues();
 
         // Check if current score is higher than all previous stored scores
-        index = getLowScoreIndex(scores);
 
         if (score > scores[index]) {
             // Determine lowest score column for current score to be stored into

@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class DataBaseHelper extends SQLiteOpenHelper
 {
-    public DataBaseHelper(Context context, String name,CursorFactory factory, int version)
+    public DataBaseHelper(Context context, String name, CursorFactory factory, int version)
     {
         super(context, name, factory, version);
     }
