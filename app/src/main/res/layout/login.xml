@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff8cffee"
+    android:background="#50f4e8"
     android:padding="15dp"
     android:gravity="center">
 
@@ -19,28 +19,29 @@
         android:layout_height="20dp" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="User name"
         android:id="@+id/username"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="Password"
         android:id="@+id/password"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:text="SIGN IN"
         android:id="@+id/btn_signin"
-        android:layout_gravity="center_horizontal"
-        android:onClick = "signIn"/>
+        android:layout_gravity="left"
+        android:onClick = "signIn"
+        android:layout_marginTop="20dp"/>
 
     <Space
         android:layout_width="1dp"
@@ -53,14 +54,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/newu" />
 
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="20dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New User"
+        android:text="NEW USER"
         android:id="@+id/btn_newuser"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>

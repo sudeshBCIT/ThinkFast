@@ -9,32 +9,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="START GAME"
-        android:id="@+id/btn_play"
-        android:layout_above="@+id/btn_instruct"
-        android:layout_centerHorizontal="true"
-        android:onClick = "optionsOnClick"/>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="START GAME"
+            android:id="@+id/btn_play"
+            android:layout_above="@+id/btn_instruct"
+            android:layout_centerHorizontal="true"
+            android:onClick = "optionsOnClick"/>
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="HOW TO PLAY"
-        android:id="@+id/btn_instruct"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick = "optionsOnClick"/>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="HOW TO PLAY"
+            android:id="@+id/btn_instruct"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:onClick = "optionsOnClick"/>
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="HIGH SCORES"
-        android:id="@+id/btn_scores"
-        android:layout_below="@+id/btn_instruct"
-        android:layout_centerHorizontal="true"
-        android:onClick = "optionsOnClick"/>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="HIGH SCORES"
+            android:id="@+id/btn_scores"
+            android:layout_below="@+id/btn_instruct"
+            android:layout_centerHorizontal="true"
+            android:onClick = "optionsOnClick"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/btn_play"
+            android:src="@drawable/thinkfast8"/>
     </RelativeLayout>
 
 </LinearLayout>

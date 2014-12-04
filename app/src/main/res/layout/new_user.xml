@@ -3,9 +3,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff8cffee"
+    android:background="#50f4e8"
     android:padding="15dp"
     android:gravity="center">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -19,12 +20,12 @@
         android:layout_height="20dp" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:id="@+id/newuser_name"
         android:hint="User Name"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left" />
 
     <Space
         android:layout_width="1dp"
@@ -42,25 +43,27 @@
         android:layout_height="20dp" />" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:id="@+id/new_password"
         android:hint="Password"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:id="@+id/confirm_password"
         android:hint="Confirm Password"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="SUBMIT"
         android:id="@+id/btn_submit"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left"
+        android:layout_marginTop="30dp"/>
+
 </LinearLayout>

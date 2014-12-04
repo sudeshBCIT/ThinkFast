@@ -4,10 +4,10 @@
     <string name="app_name">ThinkFast</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="pro">Are you a ThinkFast pro?</string>
-    <string name="newu">Are you new to ThinkFast?</string>
-    <string name="choose_name">Choose a User Name</string>
-    <string name="choose_pass">Choose a Password</string>
+    <string name="pro">Are you a ThinkFast! pro?</string>
+    <string name="newu">Are you new to ThinkFast!?</string>
+    <string name="choose_name">Create User Name</string>
+    <string name="choose_pass">Create Password</string>
     <string name="instruction_0">        How To Play\n</string>
     <string name="instruction_1">        1. A letter and a number will\n appear on a card.</string>
     <string name="instruction_2">        2. Decide if the number on the\n top card is an even number.</string>
