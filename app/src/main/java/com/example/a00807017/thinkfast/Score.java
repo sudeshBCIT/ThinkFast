@@ -24,7 +24,7 @@ public class Score extends Activity {
 
         // get Instance  of Database Adapter
         dataBaseAdapter = DataBaseAdapter.getOneInstance(this);
-      //  dataBaseAdapter = dataBaseAdapter.open();
+        //dataBaseAdapter = dataBaseAdapter.open();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -37,7 +37,11 @@ public class Score extends Activity {
 
         // Get scores array from database
         scores = dataBaseAdapter.getScores(userName);
+
+        // Save the current score in database if one of 3 highest scores
         int index = getLowScoreIndex(scores);
+        dataBaseAdapter.updateScore(userName, scores , score, index);
+        scores = dataBaseAdapter.getScores(userName);
 
         // Sort array (lowest to highest)
         Arrays.sort(scores);
@@ -55,8 +59,7 @@ public class Score extends Activity {
         int score3 = scores[0];
         textScore3.setText(String.valueOf(score3));
 
-        // Save the current score in database if one of 3 highest scores
-        dataBaseAdapter.updateScore(userName, scores , score, index);
+        //dataBaseAdapter.close();
     }
 
     public int getLowScoreIndex(int[] scores) {
