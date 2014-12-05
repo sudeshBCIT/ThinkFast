@@ -59,7 +59,7 @@ public class Score extends Activity {
         int lowScore = 0;
         int index = 0;
 
-        scores[0] = lowScore;
+        lowScore = scores[0];
         if (scores[1] < lowScore) {
             lowScore = scores[1];
             index = 1;
