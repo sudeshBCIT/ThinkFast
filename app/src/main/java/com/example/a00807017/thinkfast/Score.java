@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 /**
  * Created by Sudesh on 11/10/2014.
  */
@@ -36,9 +38,12 @@ public class Score extends Activity {
         // Get scores array from database
         scores = dataBaseAdapter.getScores(userName);
 
+        // Sort array (lowest to highest)
+        Arrays.sort(scores);
+
         // Display the previous top three scores
         TextView textScore1 = (TextView) findViewById(R.id.first_place);
-        int score1 = scores[0];
+        int score1 = scores[2];
         textScore1.setText(String.valueOf(score1));
 
         TextView textScore2 = (TextView) findViewById(R.id.second_place);
@@ -46,7 +51,7 @@ public class Score extends Activity {
         textScore2.setText(String.valueOf(score2));
 
         TextView textScore3 = (TextView) findViewById(R.id.third_place);
-        int score3 = scores[2];
+        int score3 = scores[0];
         textScore3.setText(String.valueOf(score3));
 
         // Save the current score in database if one of 3 highest scores
