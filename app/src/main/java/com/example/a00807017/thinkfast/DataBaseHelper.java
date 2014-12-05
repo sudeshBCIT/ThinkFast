@@ -5,7 +5,7 @@ package com.example.a00807017.thinkfast;
  *
  * @authors:    ThinkFast!
  *              Lynn Yuen, Sudesh Yadav, and Sandra Buchanan
- *
+ *              Fall Term 2014
  */
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,7 +1,11 @@
 package com.example.a00807017.thinkfast;
 
 /**
- * Created by A00807017 on 11/6/2014.
+ * This activity creates the first instruction page fragment
+ *
+ * @authors:    ThinkFast!
+ *              Lynn Yuen, Sudesh Yadav, and Sandra Buchanan
+ *              Fall Term 2014
  */
 import android.content.Context;
 import android.os.Bundle;
