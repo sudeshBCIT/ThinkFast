@@ -63,8 +63,7 @@ public class Score extends Activity {
         if (scores[1] < lowScore) {
             lowScore = scores[1];
             index = 1;
-        }
-        if (scores[2]< lowScore) {
+        } else if (scores[2]< lowScore) {
             index = 2;
         }
         return index;
