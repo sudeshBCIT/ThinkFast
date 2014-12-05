@@ -1,7 +1,11 @@
 package com.example.a00807017.thinkfast;
 
 /**
- * Created by A00807017 on 11/6/2014.
+ * This class extends FragmentPagerAdapter to allow for fragments based on the user's swipe
+ *
+ * @authors:    ThinkFast!
+ *              Lynn Yuen, Sudesh Yadav, and Sandra Buchanan
+ *              Fall Term 2014
  */
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -14,9 +18,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public ViewPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         _context=context;
-
     }
     @Override
+
+    // Method to determine what fragment is needed and create instance of it
     public Fragment getItem(int position) {
         Fragment f = new Fragment();
         switch(position){

@@ -9,7 +9,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * This activity crease
+ * This activity determines whether the user is logging in or setting up a new account based on
+ * the button listener.  If the user is logging in, password verification is performed based on
+ * the information saved in the database.  If the user is a new user, the NewUser activity is
+ * called.
  *
  * @authors:    ThinkFast!
  *              Lynn Yuen, Sudesh Yadav, and Sandra Buchanan
@@ -31,15 +34,15 @@ public class Login extends Activity {
         dataBaseAdapter = DataBaseAdapter.getOneInstance(this);
         dataBaseAdapter = dataBaseAdapter.open();
 
-        // Get The Reference Of Buttons
+        // Gets the reference of the buttons
         btnSignIn=(Button)findViewById(R.id.btn_signin);
         btnNewUser=(Button)findViewById(R.id.btn_newuser);
 
-        // Sets onClick Listener on sign up button
+        // On button click, go to NewUser activity
         btnNewUser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                /// Create intent for the SignUpActivity and start the activity
+                // Creates and starts the intent for the NewUser activity
                 Intent intentNewUser=new Intent(getApplicationContext(),NewUser.class);
                 startActivity(intentNewUser);
             }
@@ -48,13 +51,12 @@ public class Login extends Activity {
     // Method to handle click event of sign in button
     public void signIn(View v)
     {
-        // Retrieve the view's references
+        // Retrieve the view and button references
         final EditText editTextUserName=(EditText)findViewById(R.id.username);
         final  EditText editTextPassword=(EditText)findViewById(R.id.password);
-
         Button btnSignIn=(Button)findViewById(R.id.btn_signin);
 
-        // Sets onClick Listener
+        // On button click, retrieve user input and check that passwords match
         btnSignIn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -67,14 +69,15 @@ public class Login extends Activity {
 
                 // Check if stored password matches password of user's input
                 if(password.equals(storedPassword))
-                {   // Password matches
+                {   // Passwords match
                     Toast.makeText(Login.this, "Congrats: Login Successful", Toast.LENGTH_LONG).show();
+                    // Creates and starts the intent for the Options activity
                     Intent optionsIntent = new Intent(getApplicationContext(), Options.class);
                     optionsIntent.putExtra("USERNAME", userName);
                     startActivity(optionsIntent);
                 }
                 else
-                {   // Password doesn't match and send error message
+                {   // Passwords don't match and send error message
                     Toast.makeText(Login.this, "User Name or Password does not match", Toast.LENGTH_LONG).show();
                 }
             }

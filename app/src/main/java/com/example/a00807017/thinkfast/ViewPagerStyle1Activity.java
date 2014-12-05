@@ -1,7 +1,11 @@
 package com.example.a00807017.thinkfast;
 
 /**
- * Created by A00807017 on 11/6/2014.
+ * This class is the DAO (Data Access Object) class for the Database
+ *
+ * @authors:    ThinkFast!
+ *              Lynn Yuen, Sudesh Yadav, and Sandra Buchanan
+ *              Fall Term 2014
  */
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +20,12 @@ import android.widget.Button;
 
 public class ViewPagerStyle1Activity extends FragmentActivity {
     private ViewPager _mViewPager;
-    private ViewPagerAdapter _adapter;
+    private ViewPagerAdapter _adapter;    // View page adapter
     public String userName;
 
-    //added this
-    Button play_b;
-    Button exit_b;
+    Button play_b;    // Button to go to game page
+    Button exit_b;    // Button to go to options page
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,7 +48,7 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
         }
     }
 
-    /** Called when the activity is first created. */
+    // Called when the activity is first created.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +56,12 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
         setUpView();
         setTab();
 
+        // Retrieve user name passed from previous activity
         Intent intent = getIntent();
         userName = intent.getStringExtra("USERNAME");
 
-        //added this
         play_b = (Button) findViewById(R.id.play_button);
-
+        // On button click, return to options page along with passed user name
         play_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +74,7 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
         });
 
         exit_b = (Button) findViewById(R.id.cancel_button);
-
+        // On button click, return to options page along with passed user name
         exit_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +101,8 @@ public class ViewPagerStyle1Activity extends FragmentActivity {
             public void onPageScrollStateChanged(int position) {}
             @Override
             public void onPageScrolled(int arg0, float arg1, int arg2) {}
+
+            // This method determines which fragment to make visible
             @Override
             public void onPageSelected(int position) {
                 // TODO Auto-generated method stub

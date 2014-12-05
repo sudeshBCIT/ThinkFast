@@ -7,25 +7,29 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.Arrays;
-
 /**
- * Created by Sudesh on 11/10/2014.
+ * This activity displays the current score and the user's top 3 high scores.
+ *
+ * @authors:    ThinkFast!
+ *              Lynn Yuen, Sudesh Yadav, and Sandra Buchanan
+ *              Fall Term 2014
  */
+
 public class Score extends Activity {
 
     public String userName;
-    public int score;
-    private int[]scores;
-    DataBaseAdapter dataBaseAdapter;
+    public int score;           // Current score
+    private int[]scores;        // Array containing top 3 scores
+    DataBaseAdapter dataBaseAdapter;   // Database instance
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score);
 
-        // get Instance  of Database Adapter
+        // Get instance  of database adapter
         dataBaseAdapter = DataBaseAdapter.getOneInstance(this);
-        //dataBaseAdapter = dataBaseAdapter.open();
 
+        // Retrieve user name and current score passed from previous activity
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         userName = bundle.getString("USERNAME");
@@ -43,7 +47,7 @@ public class Score extends Activity {
         dataBaseAdapter.updateScore(userName, scores , score, index);
         scores = dataBaseAdapter.getScores(userName);
 
-        // Sort array (lowest to highest)
+        // Sort scores array (lowest to highest)
         Arrays.sort(scores);
 
         // Display the previous top three scores
@@ -59,14 +63,16 @@ public class Score extends Activity {
         int score3 = scores[0];
         textScore3.setText(String.valueOf(score3));
 
-        //dataBaseAdapter.close();
     }
 
+    // Method to retrieve the array index of the lowest score that was stored
     public int getLowScoreIndex(int[] scores) {
         int lowScore = 0;
         int index = 0;
 
+        // Set low score to first score in array
         lowScore = scores[0];
+        // Check all other scores against lowest score
         if (scores[1] < lowScore) {
             lowScore = scores[1];
             index = 1;
@@ -76,19 +82,16 @@ public class Score extends Activity {
         }
             return index;
     }
-
+    // Return to game activity based on button click
     public void backtoActivity(View view)
     {
-        //Calling the main activity again
-        //Date 19/11/2014
         Intent intent = new Intent(Score.this,MyGame.class);
         intent.putExtra("USERNAME", userName);
         startActivity(intent);
     }
-
+    // Return to option activity based on button click
     public void backToOptions(View view)
     {
-        //take us back to Options menu
         Intent options_intent = new Intent(Score.this,Options.class);
         options_intent.putExtra("USERNAME", userName);
         startActivity(options_intent);

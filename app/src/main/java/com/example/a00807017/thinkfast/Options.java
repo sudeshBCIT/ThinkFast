@@ -7,21 +7,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+/**
+ * This activity is basically the main menu.  Once a button is clicked the listener determines the
+ * correct next activity to call
+ *
+ * @authors:    ThinkFast!
+ *              Lynn Yuen, Sudesh Yadav, and Sandra Buchanan
+ *              Fall Term 2014
+ */
+
 
 public class Options extends Activity {
 
-    public String userName;
+    public String userName;   // User name needed for other activities
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.options);
 
+        // Retrieve user name passed from previous activity
         Intent intent = getIntent();
         userName = intent.getStringExtra("USERNAME");
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,23 +53,27 @@ public class Options extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Method called when button gets clicked to determine which activity to go to next
     public void optionsOnClick(View v) {
 
         switch(v.getId()){
 
-            case R.id.btn_play: /** Start the game **/
+            case R.id.btn_play: // Start the game //
+                // Create and start intent for MyGame activity
                 Intent playIntent = new Intent(this, MyGame.class);
                 playIntent.putExtra("USERNAME", userName);
                 this.startActivity(playIntent);
                 break;
 
-            case R.id.btn_instruct: /** Start the instructions */
+            case R.id.btn_instruct: // Start the instructions //
+                // Create and start intent for instructions activity via the ViewPagerStyle1
                 Intent instructionsIntent = new Intent(this, ViewPagerStyle1Activity.class);
                 instructionsIntent.putExtra("USERNAME", userName);
                 this.startActivity(instructionsIntent);
                 break;
 
-            case R.id.btn_scores: /** Show the scores **/
+            case R.id.btn_scores: // Show the scores //
+                // Create bundle and intent for score  activity
                 Intent scoresIntent = new Intent(this, Score.class);
                 scoresIntent.putExtra("USERNAME", userName);
                 this.startActivity(scoresIntent);
