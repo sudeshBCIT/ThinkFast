@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MyAndroidKey'
+            keyPassword 'thinkfast'
+            storeFile file('C:/Users/A00807017/android.jks')
+            storePassword 'thinkfast'
+        }
+    }
     compileSdkVersion 19
     buildToolsVersion "20.0.0"
-
     defaultConfig {
         applicationId "com.example.a00807017.thinkfast"
         minSdkVersion 19
@@ -15,11 +22,12 @@ android {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:support-v4:19.0.+"
+    compile 'com.android.support:support-v4:19.0.+'
 }
