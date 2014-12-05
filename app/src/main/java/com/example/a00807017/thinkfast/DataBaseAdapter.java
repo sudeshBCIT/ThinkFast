@@ -112,7 +112,6 @@ public class DataBaseAdapter {
 
     public void updateScore(String userName, int[] scores, int score, int index)
     {
-
         // Define the updated row content.
         ContentValues updatedValues = new ContentValues();
 
